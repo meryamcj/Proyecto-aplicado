@@ -4,7 +4,6 @@
 sudo apt-get update
 sudo apt-get install python3
 
-# Create a virtual environment
 python3 -m venv venv
 
 # Activate the virtual environment
