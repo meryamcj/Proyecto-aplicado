@@ -45,6 +45,11 @@ import scipy
 import warnings
 from wordcloud import WordCloud
 from datetime import datetime
+import os
+
+# Get the assigned port from the environment variable or use a default (e.g., 8501)
+port = int(os.environ.get('PORT', 8501))
+
 
 warnings.filterwarnings('ignore')
 pd.set_option('display.max_columns', None)
