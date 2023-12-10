@@ -123,40 +123,7 @@ def plot_decision_boundaries(clusterer, X, resolution=1000, show_centroids=True,
     else:
         plt.tick_params(labelleft=False)
 
-#This code makes a direct connection with the db and extract the FULL info from the table to transform it into a dataframe
-import pandas as pd
-import psycopg2
-
-# db credentials
-db_user = "postgres"
-db_password = "Ml2023.1"
-db_host = "ml-db-instance.c0tl5vuvxgtt.us-east-1.rds.amazonaws.com"
-db_name = "initial_db"
-db_port = 5432
-
-# Define the connection string
-db_uri = f"mysql://{db_user}:{db_password}@{db_host}/{db_name}"
-
-# Establish a connection to the RDS instance
-connection = psycopg2.connect(
-    host=db_host,
-    port=db_port,
-    database=db_name,
-    user=db_user,
-    password=db_password
-)
-
-table_name = "surveys_data"
-
-# Query to select data from the table
-query = f"SELECT * FROM {table_name}"
-
-# Use pandas to read the data into a DataFrame
-data = pd.read_sql(query, connection)
-
-columns_to_drop = ['date_created','id','codigo']
-data = data.drop(columns=columns_to_drop)
-df = pd.DataFrame(data)
+df = pd.read_csv('data.csv')
 # Streamlit app
 st.title('App Proyecto Aplicado')
 
